@@ -40,11 +40,14 @@ public class Fecha {
 
 		if(anio>0&&mes>0&&dia>0){
 			
-			if(anio%4==0&&anio%100==0&&anio%400!=0)
+			if(anio%100==0&&anio%400==0)
+				febrero=29;
+			else{
+			if(anio%4==0)
 				febrero=29;
 			else
 				febrero=28;
-
+			}
 			switch(mes){
 			case 1: case 3: case 5: case 7: case 8: case 10: case 12:
 				if(dia<=31)

@@ -8,20 +8,21 @@ public class Calculofechas {
 		
         Scanner teclado = new Scanner(System.in);
 		Fecha fech;
+		int dia, mes, anio;
 		fech=new Fecha();
 		
 		do{
 			System.out.println("Dia");
-			fech.dia=teclado.nextInt();
+			dia=teclado.nextInt();
 			System.out.println("Mes");
-			fech.mes=teclado.nextInt();
+			mes=teclado.nextInt();
 			System.out.println("Año");
-			fech.anio=teclado.nextInt();
-
+			anio=teclado.nextInt();
+			fech=new Fecha(dia, mes, anio);
 			
-		}while(fech.dia==0&&fech.mes==0&&fech.anio==0);
+		}while(fech.getDia()==0&&fech.getMes()==0&&fech.getAnio()==0);
 		
-		System.out.println("0");
+		System.out.println(""+fech.getDia()+" "+fech.getMes()+" "+fech.getAnio());
 
 	}
 

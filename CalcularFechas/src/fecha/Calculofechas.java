@@ -16,7 +16,9 @@ public class Calculofechas {
 		//diferencia fechas
 		//dia de la semana
 		//suma de dia
-		
+		// 1-1-1 jueves
+		//aqui llamamos a los metodos que pondremos en fecha
+		//con get y set pasamos y leemos atributos
 		
 		System.out.println(""+fech1.getDia()+" "+fech1.getMes()+" "+fech1.getAnio());
 		

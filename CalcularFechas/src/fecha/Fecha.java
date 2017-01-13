@@ -1,6 +1,6 @@
 package fecha;
 
-
+import java.util.Scanner;
 
 public class Fecha {
 	
@@ -40,13 +40,16 @@ public class Fecha {
 
 		if(anio>0&&mes>0&&dia>0){
 			
-			if(anio%100==0&&anio%400==0)
+			if(anio%400==0)
 				febrero=29;
+			
 			else{
-			if(anio%4==0)
+			if(anio%4==0&&anio%100!=0)
 				febrero=29;
+			
 			else
 				febrero=28;
+			
 			}
 			switch(mes){
 			case 1: case 3: case 5: case 7: case 8: case 10: case 12:
@@ -80,8 +83,24 @@ public class Fecha {
 		this.mes = 0;
 		this.anio = 0;
 		}
+		
 	}
-	
+	public Fecha validador(){
+		Scanner teclado = new Scanner(System.in);
+		int dia, mes, anio;
+		Fecha fech;
+		do{
+			System.out.println("Dia");
+			dia=teclado.nextInt();
+			System.out.println("Mes");
+			mes=teclado.nextInt();
+			System.out.println("Año");
+			anio=teclado.nextInt();
+			fech=new Fecha(dia, mes, anio);
+			
+		}while(fech.getDia()==0&&fech.getMes()==0&&fech.getAnio()==0);
+	return fech;
+	}
 	
 	
 	

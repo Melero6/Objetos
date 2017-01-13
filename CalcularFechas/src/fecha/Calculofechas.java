@@ -7,23 +7,21 @@ public class Calculofechas {
 	public static void main(String[] args) {
 		
         Scanner teclado = new Scanner(System.in);
-		Fecha fech;
-		int dia, mes, anio;
-		fech=new Fecha();
-		
-		do{
-			System.out.println("Dia");
-			dia=teclado.nextInt();
-			System.out.println("Mes");
-			mes=teclado.nextInt();
-			System.out.println("Año");
-			anio=teclado.nextInt();
-			fech=new Fecha(dia, mes, anio);
-			
-		}while(fech.getDia()==0&&fech.getMes()==0&&fech.getAnio()==0);
-		
-		System.out.println(""+fech.getDia()+" "+fech.getMes()+" "+fech.getAnio());
+		Fecha fech, fech1, fech2;
 
+		fech=new Fecha();
+		fech1=new Fecha();
+		fech1=fech.validador();
+		//crear el menu con las 3 opciones
+		//diferencia fechas
+		//dia de la semana
+		//suma de dia
+		
+		
+		System.out.println(""+fech1.getDia()+" "+fech1.getMes()+" "+fech1.getAnio());
+		
+
+		
 	}
 
 }

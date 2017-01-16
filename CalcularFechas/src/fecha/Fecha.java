@@ -104,97 +104,104 @@ public class Fecha {
 	}
 	
 	public int diferencia(Fecha fech2){
-		
+
 		//Meses 31: Enero 1, Marzo 3, Mayo 5, Julio 7, Agosto 8, Octubre 10 y Diciembre 12.
 		//Meses 30: Abril 4, Junio 6, Septiembre 9, Noviembre 11.
 		//Meses 28-29: Febrero 2.
 
-		int dia1=this.dia, mes1=this.mes, anio1=this.anio, dia2=fech2.getDia(), mes2=fech2.getMes(), anio2=fech2.getAnio(), diasTotales=0;
+		int limiteMes1=13, limiteMes2=0, dia1=this.dia, mes1=this.mes, anio1=this.anio, dia2=fech2.getDia(), mes2=fech2.getMes(), anio2=fech2.getAnio(), diasTotales=0;
 
 
 		diasTotales+=dia2-1;
-		for(int i=anio1+1;i<anio2;i++){
+		if(anio>anio2||mes>mes2||dia>dia2)
+			System.out.println("Error: la primera fecha es mayor a la segunda");
+		else{
+			if(anio!=anio2)	{
+				for(int i=anio1+1;i<anio2;i++){
 
-			if(i%400==0)
-				diasTotales+=366;
+					if(i%400==0)
+						diasTotales+=366;
 
-			else{
-				if(i%4==0&&i%100!=0)
-					diasTotales+=366;
-
-				else
-					diasTotales+=365;
+					else{
+						if(i%4==0&&i%100!=0)
+							diasTotales+=366;
+						else
+							diasTotales+=365;
+					}
+				}
 			}
-		}
+			else{
+				limiteMes1=mes2;
+				limiteMes2=mes1;
+			}
 
-		for(int i=mes1+1;i<=12;i++)
-		{
-			switch(i)
+			for(int i=mes1+1;i<limiteMes1;i++)
 			{
+				switch(i)
+				{
+				case 4: case 6: case 9: case 11:
+					diasTotales+=30;
+					break;
+				case 2:
+					if(anio1%400==0)
+						diasTotales+=29;
+
+					else{
+						if(anio1%4==0&&anio1%100!=0)
+							diasTotales+=29;
+						else
+							diasTotales+=28;
+					}
+					break;
+				default:
+					diasTotales += 31;
+				}
+			}
+
+			switch(mes1){
 			case 4: case 6: case 9: case 11:
-				diasTotales+=30;
+				diasTotales+=30-dia1;
 				break;
+
 			case 2:
 				if(anio1%400==0)
-					diasTotales+=29;
+					diasTotales+=29-dia1;
 
 				else{
 					if(anio1%4==0&&anio1%100!=0)
-						diasTotales+=29;
-
+						diasTotales+=29-dia1;
 					else
-						diasTotales+=28;
+						diasTotales+=28-dia1;
 				}
 				break;
+
 			default:
-				diasTotales += 31;
+				diasTotales += 31-dia1;
 			}
-		}
 
-		switch(mes1){
-		case 4: case 6: case 9: case 11:
-			diasTotales+=30-dia1;
-			break;
+			if(anio!=anio2)
+				for(int i=mes2-1;i>limiteMes2;i--)
+				{
+					switch(i)
+					{
+					case 4: case 6: case 9: case 11:
+						diasTotales += 30;
+						break;
+					case 2:
+						if(anio2%400==0)
+							diasTotales+=29;
 
-		case 2:
-			if(anio1%400==0)
-				diasTotales+=29-dia1;
-
-			else{
-				if(anio1%4==0&&anio1%100!=0)
-					diasTotales+=29-dia1;
-
-				else
-					diasTotales+=28-dia1;
-			}
-			break;
-
-		default:
-			diasTotales += 31-dia1;
-		}
-
-		for(int i=mes2-1;i<=1;i--)
-		{
-			switch(i)
-			{
-			case 4: case 6: case 9: case 11:
-				diasTotales += 30;
-				break;
-			case 2:
-				if(anio2%400==0)
-					diasTotales+=29;
-
-				else{
-					if(anio2%4==0&&anio2%100!=0)
-						diasTotales+=29;
-
-					else
-						diasTotales+=28;
+						else{
+							if(anio2%4==0&&anio2%100!=0)
+								diasTotales+=29;
+							else
+								diasTotales+=28;
+						}
+						break;
+					default:
+						diasTotales += 31;
+					}
 				}
-				break;
-			default:
-				diasTotales += 31;
-			}
 		}
 
 		System.out.println("Han pasado " + diasTotales+" dias.");

@@ -108,15 +108,18 @@ public class Fecha {
 		//Meses 31: Enero 1, Marzo 3, Mayo 5, Julio 7, Agosto 8, Octubre 10 y Diciembre 12.
 		//Meses 30: Abril 4, Junio 6, Septiembre 9, Noviembre 11.
 		//Meses 28-29: Febrero 2.
-
+		
+		//MISMO MES MISMO AÑO DIAS A PARTIR DEL 1 
+		
 		int limiteMes1=13, limiteMes2=0, dia1=this.dia, mes1=this.mes, anio1=this.anio, dia2=fech2.getDia(), mes2=fech2.getMes(), anio2=fech2.getAnio(), diasTotales=0;
-
+		boolean llave=true;
 
 		diasTotales+=dia2-1;
 		if(anio>anio2||mes>mes2||dia>dia2)
 			System.out.println("Error: la primera fecha es mayor a la segunda");
 		else{
-			if(anio!=anio2)	{
+			if(anio1!=anio2)	{
+
 				for(int i=anio1+1;i<anio2;i++){
 
 					if(i%400==0)
@@ -133,6 +136,8 @@ public class Fecha {
 			else{
 				limiteMes1=mes2;
 				limiteMes2=mes1;
+				if(mes1==mes2)
+					llave=false;
 			}
 
 			for(int i=mes1+1;i<limiteMes1;i++)
@@ -157,7 +162,7 @@ public class Fecha {
 					diasTotales += 31;
 				}
 			}
-
+			if(llave)
 			switch(mes1){
 			case 4: case 6: case 9: case 11:
 				diasTotales+=30-dia1;
@@ -179,7 +184,7 @@ public class Fecha {
 				diasTotales += 31-dia1;
 			}
 
-			if(anio!=anio2)
+			if(anio1!=anio2)
 				for(int i=mes2-1;i>limiteMes2;i--)
 				{
 					switch(i)

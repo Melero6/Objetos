@@ -103,13 +103,30 @@ public class Fecha {
 	return fech;
 	}
 	
-	public Fecha diferencia(){
-		Fecha fech, fech1, fech2;
-		int dia1=fech1.getDia(), mes1=fech1.getDia(), anio1=fech1.getDia(), dia2=fech2.getDia(), mes2=fech2.getDia(), anio2=fech2.getDia(), diasTotales=0;
+	public int diferencia(Fecha fech2){
 		
-		for(int i=anio1+1;i<anio2;i++)
-			diasTotales +=((i%400==0)? 366 :365); //tengo que apañarlo
-		
+		//Meses 31: Enero 1, Marzo 3, Mayo 5, Julio 7, Agosto 8, Octubre 10 y Diciembre 12.
+		//Meses 30: Abril 4, Junio 6, Septiembre 9, Noviembre 11.
+		//Meses 28-29: Febrero 2.
+
+		int dia1=this.dia, mes1=this.mes, anio1=this.anio, dia2=fech2.getDia(), mes2=fech2.getMes(), anio2=fech2.getAnio(), diasTotales=0;
+
+
+		diasTotales+=dia2-1;
+		for(int i=anio1+1;i<anio2;i++){
+
+			if(i%400==0)
+				diasTotales+=366;
+
+			else{
+				if(i%4==0&&i%100!=0)
+					diasTotales+=366;
+
+				else
+					diasTotales+=365;
+			}
+		}
+
 		for(int i=mes1+1;i<=12;i++)
 		{
 			switch(i)
@@ -118,26 +135,45 @@ public class Fecha {
 				diasTotales+=30;
 				break;
 			case 2:
-				diasTotales +=((anio1%4==0)? 29 : 28);
+				if(anio1%400==0)
+					diasTotales+=29;
+
+				else{
+					if(anio1%4==0&&anio1%100!=0)
+						diasTotales+=29;
+
+					else
+						diasTotales+=28;
+				}
 				break;
 			default:
 				diasTotales += 31;
 			}
 		}
-		
-		switch(mes1)
-		{
+
+		switch(mes1){
 		case 4: case 6: case 9: case 11:
-			diasTotales+=30-dia;
+			diasTotales+=30-dia1;
 			break;
+
 		case 2:
-			diasTotales +=((anio2%4==0)? 29-dia : 28-dia);
+			if(anio1%400==0)
+				diasTotales+=29-dia1;
+
+			else{
+				if(anio1%4==0&&anio1%100!=0)
+					diasTotales+=29-dia1;
+
+				else
+					diasTotales+=28-dia1;
+			}
 			break;
+
 		default:
-			diasTotales += 31-dia;
+			diasTotales += 31-dia1;
 		}
-		
-		for(int i=mes1-1;i<=1;i--)
+
+		for(int i=mes2-1;i<=1;i--)
 		{
 			switch(i)
 			{
@@ -145,22 +181,31 @@ public class Fecha {
 				diasTotales += 30;
 				break;
 			case 2:
-				diasTotales +=((anio2%4==0)? 29 : 28);
+				if(anio2%400==0)
+					diasTotales+=29;
+
+				else{
+					if(anio2%4==0&&anio2%100!=0)
+						diasTotales+=29;
+
+					else
+						diasTotales+=28;
+				}
 				break;
 			default:
 				diasTotales += 31;
 			}
 		}
-		fech=new Fecha(diaTotales);
 
 		System.out.println("Han pasado " + diasTotales+" dias.");
-		
+		return diasTotales;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
+
 }
 
 

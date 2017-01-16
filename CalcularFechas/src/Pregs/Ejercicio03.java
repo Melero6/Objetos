@@ -6,30 +6,30 @@ public class Ejercicio03 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner teclado=new Scanner(System.in);
-		int dia, mes, año, diaActual, mesActual, añoActual, diasTotales=0;
+		int dia1, mes1, anio1, dia2, mes2, anio2, diasTotales=0;
 		
 		System.out.println("Introduce el dia de tu fecha de nacimiento");
-		dia=teclado.nextInt();
+		dia1=teclado.nextInt();
 		System.out.println("Introduce el mes de tu fecha de nacimiento");
-		mes=teclado.nextInt();
+		mes1=teclado.nextInt();
 		System.out.println("Introduce el año de tu fecha de nacimiento");
-		año=teclado.nextInt();
+		anio1=teclado.nextInt();
 		
 		System.out.println("Introduce el dia actual");
-		diaActual=teclado.nextInt();
-		diasTotales+=diaActual-1;
+		dia2=teclado.nextInt();
+		diasTotales+=dia2-1;
 		System.out.println("Introduce el mes actual");
-		mesActual=teclado.nextInt();
+		mes2=teclado.nextInt();
 		System.out.println("Introduce el año actual");
-		añoActual=teclado.nextInt();
+		anio2=teclado.nextInt();
 		
 		//Meses 31: Enero , Marzo, Mayo, Julio, Agosto, Octubre y Diciembre
 		//Meses 30: Abril 4, Junio 6, Septiembre 9, Noviembre 11.
 		
-		for(int i=año+1;i<añoActual;i++)
+		for(int i=anio1+1;i<anio2;i++)
 			diasTotales +=((i%4==0)? 366 :365);
 		
-		for(int i=mes+1;i<=12;i++)
+		for(int i=mes1+1;i<=12;i++)
 		{
 			switch(i)
 			{
@@ -37,26 +37,26 @@ public class Ejercicio03 {
 				diasTotales+=30;
 				break;
 			case 2:
-				diasTotales +=((año%4==0)? 29 : 28);
+				diasTotales +=((anio1%4==0)? 29 : 28);
 				break;
 			default:
 				diasTotales += 31;
 			}
 		}
 		
-		switch(mes)
+		switch(mes1)
 		{
 		case 4: case 6: case 9: case 11:
-			diasTotales+=30-dia;
+			diasTotales+=30-dia1;
 			break;
 		case 2:
-			diasTotales +=((añoActual%4==0)? 29-dia : 28-dia);
+			diasTotales +=((anio2%4==0)? 29-dia1 : 28-dia1);
 			break;
 		default:
-			diasTotales += 31-dia;
+			diasTotales += 31-dia1;
 		}
 		
-		for(int i=mesActual-1;i<=1;i--)
+		for(int i=mes2-1;i<=1;i--)
 		{
 			switch(i)
 			{
@@ -64,7 +64,7 @@ public class Ejercicio03 {
 				diasTotales += 30;
 				break;
 			case 2:
-				diasTotales +=((añoActual%4==0)? 29 : 28);
+				diasTotales +=((anio2%4==0)? 29 : 28);
 				break;
 			default:
 				diasTotales += 31;

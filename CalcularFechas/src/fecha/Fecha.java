@@ -85,6 +85,7 @@ public class Fecha {
 		}
 		
 	}
+	
 	public Fecha validador(){
 		Scanner teclado = new Scanner(System.in);
 		int dia, mes, anio;
@@ -101,6 +102,61 @@ public class Fecha {
 		}while(fech.getDia()==0&&fech.getMes()==0&&fech.getAnio()==0);
 	return fech;
 	}
+	
+	public Fecha diferencia(){
+		Fecha fech, fech1, fech2;
+		int dia1=fech1.getDia(), mes1=fech1.getDia(), anio1=fech1.getDia(), dia2=fech2.getDia(), mes2=fech2.getDia(), anio2=fech2.getDia(), diasTotales=0;
+		
+		for(int i=anio1+1;i<anio2;i++)
+			diasTotales +=((i%400==0)? 366 :365); //tengo que apañarlo
+		
+		for(int i=mes1+1;i<=12;i++)
+		{
+			switch(i)
+			{
+			case 4: case 6: case 9: case 11:
+				diasTotales+=30;
+				break;
+			case 2:
+				diasTotales +=((anio1%4==0)? 29 : 28);
+				break;
+			default:
+				diasTotales += 31;
+			}
+		}
+		
+		switch(mes1)
+		{
+		case 4: case 6: case 9: case 11:
+			diasTotales+=30-dia;
+			break;
+		case 2:
+			diasTotales +=((anio2%4==0)? 29-dia : 28-dia);
+			break;
+		default:
+			diasTotales += 31-dia;
+		}
+		
+		for(int i=mes1-1;i<=1;i--)
+		{
+			switch(i)
+			{
+			case 4: case 6: case 9: case 11:
+				diasTotales += 30;
+				break;
+			case 2:
+				diasTotales +=((anio2%4==0)? 29 : 28);
+				break;
+			default:
+				diasTotales += 31;
+			}
+		}
+		fech=new Fecha(diaTotales);
+
+		System.out.println("Han pasado " + diasTotales+" dias.");
+		
+	}
+	
 	
 	
 	

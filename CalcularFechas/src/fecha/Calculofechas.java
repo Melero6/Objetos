@@ -8,23 +8,28 @@ public class Calculofechas {
 		
         Scanner teclado = new Scanner(System.in);
 		Fecha fech, fech1, fech2, fech3, fechAux;
-		int resultado, seleccionMenu;
+		int resultado, seleccionMenu, sumaDias;
 		System.out.println("- Calculo de fechas -\nIntroduce el numero de la opcion que quieras seleccionar:\n1- Diferencia de dias.\n2- Suma de dias.\n3- Dia de la semana de una fecha.");
 		fechAux=new Fecha();
 		seleccionMenu=teclado.nextInt();
 		do{
 		switch(seleccionMenu){
-		case 1:
+		case 1://diferencia de fechas
 			fech=new Fecha();
 			fech1=new Fecha();
-			fech1=fech.validador();
+			fech1=fech1.validador();
 			fech2=new Fecha();
-			fech2=fech.validador();
+			fech2=fech2.validador();
 			resultado=fech1.diferencia(fech2);
 			System.out.println("Hay "+resultado+" dias de diferencia.");
 			break;
-		case 2:
-			
+		case 2://suma dias
+			fech1=new Fecha();
+			fech1=fech1.validador();
+			fech=new Fecha();
+			System.out.println("Suma de dias");
+			sumaDias=teclado.nextInt();
+			fech=fech1.suma(sumaDias);
 			break;
 			
 		case 3: 

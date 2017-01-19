@@ -224,7 +224,10 @@ public class Fecha {
 	public Fecha suma(int sumaDias){ //suma de dias
 		Fecha fech;
 		int diaResul, mesResul, anioResul;
-		
+		for(int i=1;i<sumaDias;i++){
+			
+			
+		}
 		anioResul=sumaDias/365;
 		anioResul+=anio;
 		diaResul=sumaDias%365;
